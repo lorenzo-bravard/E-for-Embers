@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cebdca8291af9cb428e3f82476570c16
+timeCreated: 1463248281
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Prefabs/C91_Car_noInterior.prefab
+  uploadId: 282596

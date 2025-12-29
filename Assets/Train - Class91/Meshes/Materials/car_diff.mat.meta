@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a7e98946536720244b4fe26fe6f2dc0d
+timeCreated: 1471121044
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Meshes/Materials/car_diff.mat
+  uploadId: 282596

@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 97d68c517ce24194192944ad3f285909
+timeCreated: 1462724356
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Loco_wheel_L1
+    100004: Loco_wheel_L2
+    100006: Loco_wheel_L3
+    100008: Loco_wheel_L4
+    100010: Loco_wheel_R1
+    100012: Loco_wheel_R2
+    100014: Loco_wheel_R3
+    100016: Loco_wheel_R4
+    100018: Loco_windows
+    100020: locomotive_cabin
+    400000: //RootNode
+    400002: Loco_wheel_L1
+    400004: Loco_wheel_L2
+    400006: Loco_wheel_L3
+    400008: Loco_wheel_L4
+    400010: Loco_wheel_R1
+    400012: Loco_wheel_R2
+    400014: Loco_wheel_R3
+    400016: Loco_wheel_R4
+    400018: Loco_windows
+    400020: locomotive_cabin
+    2300000: //RootNode
+    2300002: Loco_wheel_L1
+    2300004: Loco_wheel_L2
+    2300006: Loco_wheel_L3
+    2300008: Loco_wheel_L4
+    2300010: Loco_wheel_R1
+    2300012: Loco_wheel_R2
+    2300014: Loco_wheel_R3
+    2300016: Loco_wheel_R4
+    2300018: Loco_windows
+    2300020: locomotive_cabin
+    3300000: //RootNode
+    3300002: Loco_wheel_L1
+    3300004: Loco_wheel_L2
+    3300006: Loco_wheel_L3
+    3300008: Loco_wheel_L4
+    3300010: Loco_wheel_R1
+    3300012: Loco_wheel_R2
+    3300014: Loco_wheel_R3
+    3300016: Loco_wheel_R4
+    3300018: Loco_windows
+    3300020: locomotive_cabin
+    4300000: Locomotive_body
+    4300002: Loco_wheel_R2
+    4300004: Loco_wheel_L2
+    4300006: Loco_wheel_L1
+    4300008: Loco_wheel_L4
+    4300010: Loco_wheel_R1
+    4300012: Loco_wheel_L3
+    4300014: Loco_wheel_R3
+    4300016: Loco_wheel_R4
+    4300018: locomotive_cabin
+    4300020: Loco_windows
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Meshes/C91_locomotive.FBX
+  uploadId: 282596

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 791744e7b16191b4a81e0eb5effb8a23
+timeCreated: 1470334544
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Meshes/Materials/intercity225_cabin_diff.mat
+  uploadId: 282596

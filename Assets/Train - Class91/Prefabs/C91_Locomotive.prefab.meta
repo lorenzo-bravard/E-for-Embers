@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4893e5a9d69e0ee44a5728f72bc0368e
+timeCreated: 1463248249
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Prefabs/C91_Locomotive.prefab
+  uploadId: 282596

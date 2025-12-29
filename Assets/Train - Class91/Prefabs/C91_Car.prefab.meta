@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 285cdae233b4bc64dadafa18cde3e313
+timeCreated: 1463248357
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Prefabs/C91_Car.prefab
+  uploadId: 282596

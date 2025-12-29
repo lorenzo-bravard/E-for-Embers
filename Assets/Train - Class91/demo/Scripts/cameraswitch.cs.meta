@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: dd81bb90bd6bf754889014cdddc73883
+timeCreated: 1463423786
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/demo/Scripts/cameraswitch.cs
+  uploadId: 282596

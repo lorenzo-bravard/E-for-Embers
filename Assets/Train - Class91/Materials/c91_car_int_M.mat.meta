@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8a27b872128a64a469963c5a51e282cd
+timeCreated: 1463249458
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Materials/c91_car_int_M.mat
+  uploadId: 282596

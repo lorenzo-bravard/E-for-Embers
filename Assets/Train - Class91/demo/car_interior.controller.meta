@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 74a4f29bf05a6a842a7d34bfb36f0753
+timeCreated: 1471122361
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/demo/car_interior.controller
+  uploadId: 282596

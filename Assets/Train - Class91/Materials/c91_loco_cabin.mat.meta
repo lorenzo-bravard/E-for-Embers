@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b35aeec6eb0211743b1bc801bc55a134
+timeCreated: 1462724356
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Materials/c91_loco_cabin.mat
+  uploadId: 282596

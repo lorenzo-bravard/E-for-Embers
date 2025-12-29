@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ed500d0699c8c044a8f62e8ecdd3ed82
+timeCreated: 1470334543
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Meshes/Materials/intercity225_car_interior.mat
+  uploadId: 282596

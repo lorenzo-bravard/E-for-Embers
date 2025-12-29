@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9fffde8db19f99746a5ed176ab978484
+timeCreated: 1471122349
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/demo/car.controller
+  uploadId: 282596

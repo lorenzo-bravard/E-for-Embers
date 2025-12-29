@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: ded65ef7027d6014e9518eaa99a7247c
+timeCreated: 1544304219
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/demo/Scripts/CameraOrbit.cs
+  uploadId: 282596

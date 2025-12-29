@@ -1,0 +1,737 @@
+fileFormatVersion: 2
+guid: 252011ba60c81f74d9b6f92afc4a040d
+timeCreated: 1463155649
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: car_interior
+    100002: Car_wheel_L1
+    100004: Car_wheel_L2
+    100006: Car_wheel_L3
+    100008: Car_wheel_L4
+    100010: Car_wheel_R1
+    100012: Car_wheel_R2
+    100014: Car_wheel_R3
+    100016: Car_wheel_R4
+    100018: car_windows
+    100020: //RootNode
+    100022: Door_L1
+    100024: Door_L2
+    100026: Door_R1
+    100028: Door_R2
+    100030: Object002
+    100032: Object004
+    100034: Object015
+    100036: Object016
+    100038: Object017
+    100040: Object018
+    100042: Object021
+    100044: Object022
+    100046: Object023
+    100048: Door_B2_L
+    100050: Door_B2_R
+    100052: Object010
+    100054: Object014
+    400000: car_interior
+    400002: Car_wheel_L1
+    400004: Car_wheel_L2
+    400006: Car_wheel_L3
+    400008: Car_wheel_L4
+    400010: Car_wheel_R1
+    400012: Car_wheel_R2
+    400014: Car_wheel_R3
+    400016: Car_wheel_R4
+    400018: car_windows
+    400020: //RootNode
+    400022: Door_L1
+    400024: Door_L2
+    400026: Door_R1
+    400028: Door_R2
+    400030: Object002
+    400032: Object004
+    400034: Object015
+    400036: Object016
+    400038: Object017
+    400040: Object018
+    400042: Object021
+    400044: Object022
+    400046: Object023
+    400048: Door_B2_L
+    400050: Door_B2_R
+    400052: Object010
+    400054: Object014
+    2300000: car_interior
+    2300002: Car_wheel_L1
+    2300004: Car_wheel_L2
+    2300006: Car_wheel_L3
+    2300008: Car_wheel_L4
+    2300010: Car_wheel_R1
+    2300012: Car_wheel_R2
+    2300014: Car_wheel_R3
+    2300016: Car_wheel_R4
+    2300018: car_windows
+    2300020: //RootNode
+    2300022: Door_L1
+    2300024: Door_L2
+    2300026: Door_R1
+    2300028: Door_R2
+    2300030: Object002
+    2300032: Object004
+    2300034: Object015
+    2300036: Object016
+    2300038: Object017
+    2300040: Object018
+    2300042: Object021
+    2300044: Object022
+    2300046: Object023
+    2300048: Object010
+    2300050: Object014
+    3300000: car_interior
+    3300002: Car_wheel_L1
+    3300004: Car_wheel_L2
+    3300006: Car_wheel_L3
+    3300008: Car_wheel_L4
+    3300010: Car_wheel_R1
+    3300012: Car_wheel_R2
+    3300014: Car_wheel_R3
+    3300016: Car_wheel_R4
+    3300018: car_windows
+    3300020: //RootNode
+    3300022: Door_L1
+    3300024: Door_L2
+    3300026: Door_R1
+    3300028: Door_R2
+    3300030: Object002
+    3300032: Object004
+    3300034: Object015
+    3300036: Object016
+    3300038: Object017
+    3300040: Object018
+    3300042: Object021
+    3300044: Object022
+    3300046: Object023
+    3300048: Object010
+    3300050: Object014
+    4300000: Object002
+    4300002: Car_wheel_R2
+    4300004: Car_wheel_L2
+    4300006: car_windows
+    4300008: Car_wheel_L4
+    4300010: Car_wheel_R1
+    4300012: Car_wheel_L3
+    4300014: Car_wheel_R3
+    4300016: Car_wheel_R4
+    4300018: Car_wheel_L1
+    4300020: car_interior
+    4300022: Door_R2
+    4300024: Object015
+    4300026: Object021
+    4300028: Door_L2
+    4300030: Object016
+    4300032: Object023
+    4300034: Door_L1
+    4300036: Object022
+    4300038: Object017
+    4300040: Door_R1
+    4300042: Object018
+    4300044: Object004
+    4300046: Object014
+    4300048: Object010
+    7400000: Door L open
+    7400002: Door L close
+    7400004: Door R open
+    7400006: Door R close
+    7400008: Door B open
+    7400010: Door B close
+    7400012: idle
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Door L open
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_L1
+        weight: 1
+      - path: Door_L1/Object017
+        weight: 1
+      - path: Door_L1/Object022
+        weight: 1
+      - path: Door_L2
+        weight: 1
+      - path: Door_L2/Object016
+        weight: 1
+      - path: Door_L2/Object023
+        weight: 1
+      - path: Door_R1
+        weight: 1
+      - path: Door_R1/Object004
+        weight: 1
+      - path: Door_R1/Object018
+        weight: 1
+      - path: Door_R2
+        weight: 1
+      - path: Door_R2/Object015
+        weight: 1
+      - path: Door_R2/Object021
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object002/Car_wheel_L1
+        weight: 1
+      - path: Object002/Car_wheel_L2
+        weight: 1
+      - path: Object002/Car_wheel_L3
+        weight: 1
+      - path: Object002/Car_wheel_L4
+        weight: 1
+      - path: Object002/Car_wheel_R1
+        weight: 1
+      - path: Object002/Car_wheel_R2
+        weight: 1
+      - path: Object002/Car_wheel_R3
+        weight: 1
+      - path: Object002/Car_wheel_R4
+        weight: 1
+      - path: Object002/car_windows
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Door L close
+      takeName: Take 001
+      firstFrame: 15
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_L1
+        weight: 1
+      - path: Door_L1/Object017
+        weight: 1
+      - path: Door_L1/Object022
+        weight: 1
+      - path: Door_L2
+        weight: 1
+      - path: Door_L2/Object016
+        weight: 1
+      - path: Door_L2/Object023
+        weight: 1
+      - path: Door_R1
+        weight: 1
+      - path: Door_R1/Object004
+        weight: 1
+      - path: Door_R1/Object018
+        weight: 1
+      - path: Door_R2
+        weight: 1
+      - path: Door_R2/Object015
+        weight: 1
+      - path: Door_R2/Object021
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object002/Car_wheel_L1
+        weight: 1
+      - path: Object002/Car_wheel_L2
+        weight: 1
+      - path: Object002/Car_wheel_L3
+        weight: 1
+      - path: Object002/Car_wheel_L4
+        weight: 1
+      - path: Object002/Car_wheel_R1
+        weight: 1
+      - path: Object002/Car_wheel_R2
+        weight: 1
+      - path: Object002/Car_wheel_R3
+        weight: 1
+      - path: Object002/Car_wheel_R4
+        weight: 1
+      - path: Object002/car_windows
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Door R open
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_L1
+        weight: 1
+      - path: Door_L1/Object017
+        weight: 1
+      - path: Door_L1/Object022
+        weight: 1
+      - path: Door_L2
+        weight: 1
+      - path: Door_L2/Object016
+        weight: 1
+      - path: Door_L2/Object023
+        weight: 1
+      - path: Door_R1
+        weight: 1
+      - path: Door_R1/Object004
+        weight: 1
+      - path: Door_R1/Object018
+        weight: 1
+      - path: Door_R2
+        weight: 1
+      - path: Door_R2/Object015
+        weight: 1
+      - path: Door_R2/Object021
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object002/Car_wheel_L1
+        weight: 1
+      - path: Object002/Car_wheel_L2
+        weight: 1
+      - path: Object002/Car_wheel_L3
+        weight: 1
+      - path: Object002/Car_wheel_L4
+        weight: 1
+      - path: Object002/Car_wheel_R1
+        weight: 1
+      - path: Object002/Car_wheel_R2
+        weight: 1
+      - path: Object002/Car_wheel_R3
+        weight: 1
+      - path: Object002/Car_wheel_R4
+        weight: 1
+      - path: Object002/car_windows
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Door R close
+      takeName: Take 001
+      firstFrame: 45
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_L1
+        weight: 1
+      - path: Door_L1/Object017
+        weight: 1
+      - path: Door_L1/Object022
+        weight: 1
+      - path: Door_L2
+        weight: 1
+      - path: Door_L2/Object016
+        weight: 1
+      - path: Door_L2/Object023
+        weight: 1
+      - path: Door_R1
+        weight: 1
+      - path: Door_R1/Object004
+        weight: 1
+      - path: Door_R1/Object018
+        weight: 1
+      - path: Door_R2
+        weight: 1
+      - path: Door_R2/Object015
+        weight: 1
+      - path: Door_R2/Object021
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object002/Car_wheel_L1
+        weight: 1
+      - path: Object002/Car_wheel_L2
+        weight: 1
+      - path: Object002/Car_wheel_L3
+        weight: 1
+      - path: Object002/Car_wheel_L4
+        weight: 1
+      - path: Object002/Car_wheel_R1
+        weight: 1
+      - path: Object002/Car_wheel_R2
+        weight: 1
+      - path: Object002/Car_wheel_R3
+        weight: 1
+      - path: Object002/Car_wheel_R4
+        weight: 1
+      - path: Object002/car_windows
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Door B open
+      takeName: Take 001
+      firstFrame: 60
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_L1
+        weight: 1
+      - path: Door_L1/Object017
+        weight: 1
+      - path: Door_L1/Object022
+        weight: 1
+      - path: Door_L2
+        weight: 1
+      - path: Door_L2/Object016
+        weight: 1
+      - path: Door_L2/Object023
+        weight: 1
+      - path: Door_R1
+        weight: 1
+      - path: Door_R1/Object004
+        weight: 1
+      - path: Door_R1/Object018
+        weight: 1
+      - path: Door_R2
+        weight: 1
+      - path: Door_R2/Object015
+        weight: 1
+      - path: Door_R2/Object021
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object002/Car_wheel_L1
+        weight: 1
+      - path: Object002/Car_wheel_L2
+        weight: 1
+      - path: Object002/Car_wheel_L3
+        weight: 1
+      - path: Object002/Car_wheel_L4
+        weight: 1
+      - path: Object002/Car_wheel_R1
+        weight: 1
+      - path: Object002/Car_wheel_R2
+        weight: 1
+      - path: Object002/Car_wheel_R3
+        weight: 1
+      - path: Object002/Car_wheel_R4
+        weight: 1
+      - path: Object002/car_windows
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Door B close
+      takeName: Take 001
+      firstFrame: 75
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_L1
+        weight: 1
+      - path: Door_L1/Object017
+        weight: 1
+      - path: Door_L1/Object022
+        weight: 1
+      - path: Door_L2
+        weight: 1
+      - path: Door_L2/Object016
+        weight: 1
+      - path: Door_L2/Object023
+        weight: 1
+      - path: Door_R1
+        weight: 1
+      - path: Door_R1/Object004
+        weight: 1
+      - path: Door_R1/Object018
+        weight: 1
+      - path: Door_R2
+        weight: 1
+      - path: Door_R2/Object015
+        weight: 1
+      - path: Door_R2/Object021
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object002/Car_wheel_L1
+        weight: 1
+      - path: Object002/Car_wheel_L2
+        weight: 1
+      - path: Object002/Car_wheel_L3
+        weight: 1
+      - path: Object002/Car_wheel_L4
+        weight: 1
+      - path: Object002/Car_wheel_R1
+        weight: 1
+      - path: Object002/Car_wheel_R2
+        weight: 1
+      - path: Object002/Car_wheel_R3
+        weight: 1
+      - path: Object002/Car_wheel_R4
+        weight: 1
+      - path: Object002/car_windows
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 90
+      lastFrame: 91
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_L1
+        weight: 1
+      - path: Door_L1/Object017
+        weight: 1
+      - path: Door_L1/Object022
+        weight: 1
+      - path: Door_L2
+        weight: 1
+      - path: Door_L2/Object016
+        weight: 1
+      - path: Door_L2/Object023
+        weight: 1
+      - path: Door_R1
+        weight: 1
+      - path: Door_R1/Object004
+        weight: 1
+      - path: Door_R1/Object018
+        weight: 1
+      - path: Door_R2
+        weight: 1
+      - path: Door_R2/Object015
+        weight: 1
+      - path: Door_R2/Object021
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object002/Car_wheel_L1
+        weight: 1
+      - path: Object002/Car_wheel_L2
+        weight: 1
+      - path: Object002/Car_wheel_L3
+        weight: 1
+      - path: Object002/Car_wheel_L4
+        weight: 1
+      - path: Object002/Car_wheel_R1
+        weight: 1
+      - path: Object002/Car_wheel_R2
+        weight: 1
+      - path: Object002/Car_wheel_R3
+        weight: 1
+      - path: Object002/Car_wheel_R4
+        weight: 1
+      - path: Object002/car_windows
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63400
+  packageName: Train - Class 91
+  packageVersion: 1.1
+  assetPath: Assets/Train - Class91/Meshes/C91_car.FBX
+  uploadId: 282596
