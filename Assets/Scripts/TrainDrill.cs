@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class TrainDrill : MonoBehaviour
@@ -9,7 +9,7 @@ public class TrainDrill : MonoBehaviour
     [Header("Position Settings")]
     public Vector3 initialLocalPosition;
     public Vector3 initialLocalRotation;
-    public Vector3 hoverOffset = new Vector3(0, 1.5f, 0.5f);
+    public Vector3 hoverOffset = new Vector3(0, 0.2f, 0.5f);
     public Vector3 cockpitLocalOffset;
 
     [Header("Settings")]
@@ -39,7 +39,7 @@ public class TrainDrill : MonoBehaviour
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
-        rb.isKinematic = false;
+        rb.isKinematic = true;
     }
 
     void LateUpdate()
@@ -84,14 +84,31 @@ public class TrainDrill : MonoBehaviour
         transform.SetParent(trainRoot);
         transform.position = trainRoot.TransformPoint(cockpitLocalOffset);
         transform.rotation = trainRoot.rotation * initialRotation;
-        rb.isKinematic = false;
+        rb.isKinematic = true;
 
         // 🎵 Optional: Play music
         if (playerObject != null)
         {
-            //playerController.PlayDrillMusicSequentialWithLoop();
-            playerObject.GetComponent<PlayerManager>().PlayDrillMusicSequential();
-            colorManager.GetComponent<ColorManager>().colorProgress = 0.25f;
+            if (GameAudioManager.Instance != null)
+            {
+                GameAudioManager.Instance.PlayDrillStep();
+            }
+            else
+            {
+                var pm = playerObject.GetComponent<PlayerManager>();
+                if (pm != null)
+                {
+                    pm.PlayDrillMusicSequential();
+                }
+                else
+                {
+                    var vpm = playerObject.GetComponent<VRPlayerManager>();
+                    if (vpm != null) vpm.PlayDrillMusicSequential();
+                }
+            }
+            
+            if (colorManager != null)
+                colorManager.colorProgress = 0.25f;
         }
-    }
+}
 }

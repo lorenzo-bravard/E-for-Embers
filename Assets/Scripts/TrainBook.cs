@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class TrainBook : MonoBehaviour
@@ -51,7 +51,7 @@ public class TrainBook : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody>();
         }
 
-        rb.isKinematic = false;
+        rb.isKinematic = true;
 
         initialRotation = Quaternion.Euler(initialLocalRotation);
     }
@@ -98,14 +98,31 @@ public class TrainBook : MonoBehaviour
         transform.position = trainRoot.TransformPoint(tableLocalOffset);
         transform.rotation = trainRoot.rotation * initialRotation;
         objectToShow.SetActive(true);
-        rb.isKinematic = false;
+        rb.isKinematic = true;
 
         // 🎵 Optional: Play music
         if (playerObject != null)
         {
-            //playerController.PlayDrillMusicSequentialWithLoop();
-            playerObject.GetComponent<PlayerManager>().PlayBookTrack();
-            colorManager.GetComponent<ColorManager>().colorProgress = 0.40f;
+            if (GameAudioManager.Instance != null)
+            {
+                GameAudioManager.Instance.PlayBookStep();
+            }
+            else
+            {
+                var pm = playerObject.GetComponent<PlayerManager>();
+                if (pm != null)
+                {
+                    pm.PlayBookTrack();
+                }
+                else
+                {
+                    var vpm = playerObject.GetComponent<VRPlayerManager>();
+                    if (vpm != null) vpm.PlayBookTrack();
+                }
+            }
+            
+            if (colorManager != null)
+                colorManager.colorProgress = 0.40f;
         }
 
         fog1.Stop();

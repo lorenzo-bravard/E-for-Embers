@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class CubeTarget : MonoBehaviour
 {
@@ -9,27 +9,89 @@ public class CubeTarget : MonoBehaviour
     public GameObject playerObject;
 
     public ColorManager colorManager;
-    private void OnTriggerEnter(Collider other)
+    [Header("Environmental Cleanup")]
+    public ParticleSystem[] fogSystems;
+    public ParticleSystem[] thunderSystems;
+    public AudioSource thunderstormAudio;
+    public GameObject[] fireParticleParents;
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("canPickUp0"))
         {
-            if (systemeParticules != null)
+            // VR Check: Only trigger if the object is released
+            var grabbable = other.GetComponent<OVRGrabbable>();
+            if (grabbable != null && grabbable.isGrabbed)
             {
-                systemeParticules.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                return;
             }
+
+            Debug.Log("Drill détectée et relâchée → activation");
+            ExecuteActivation(other.gameObject);
+        }
+    }
+
+    private void ExecuteActivation(GameObject targetObj)
+    {
+        if (systemeParticules != null)
+        {
+            systemeParticules.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        StopEnvironmentEffects();
             
-            Debug.Log("Objet 'canPickUp1' détecté → destruction");
+        Debug.Log("Objet 'canPickUp1' détecté → destruction");
 
-            objectToShow.SetActive(true);
-                
-            Destroy(other.gameObject, 0.01f);
+        if (objectToShow != null) objectToShow.SetActive(true);
+            
+        Destroy(targetObj, 0.01f);
 
-            playerObject.GetComponent<PlayerManager>().PlayDrillMusicSequential();
-            colorManager.GetComponent<ColorManager>().colorProgress = 0.15f;
+        if (GameAudioManager.Instance != null)
+        {
+            GameAudioManager.Instance.PlayDrillStep();
+        }
+        else
+        {
+            // Fallback to old manager logic
+            var pm = playerObject.GetComponent<PlayerManager>();
+            if (pm != null) pm.PlayDrillMusicSequential();
+            else {
+                var vpm = playerObject.GetComponent<VRPlayerManager>();
+                if (vpm != null) vpm.PlayDrillMusicSequential();
+            }
+        }
 
+        if (colorManager != null)
+            colorManager.colorProgress = 0.15f;
+    }
 
-            Debug.Log("STITUI Trigger détecté avec : " + other.name + ", tag : " + other.tag);
+    private void StopEnvironmentEffects()
+    {
+        if (fogSystems != null)
+        {
+            foreach (var ps in fogSystems) if (ps != null) ps.Stop();
+        }
 
+        if (thunderSystems != null)
+        {
+            foreach (var ps in thunderSystems) if (ps != null) ps.Stop();
+        }
+
+        if (thunderstormAudio != null)
+        {
+            thunderstormAudio.Stop();
+        }
+
+        if (fireParticleParents != null)
+        {
+            foreach (var parent in fireParticleParents)
+            {
+                if (parent == null) continue;
+                foreach (var ps in parent.GetComponentsInChildren<ParticleSystem>(true))
+                {
+                    ps.Stop();
+                }
+            }
         }
     }
 }

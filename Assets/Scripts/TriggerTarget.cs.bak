@@ -1,0 +1,58 @@
+using UnityEngine;
+
+public class TriggerTarget : MonoBehaviour
+{
+    [Header("Detection Settings")]
+    public string targetTag = "Livre";
+    public ParticleSystem successEffect;
+
+    [Header("Activation Settings")]
+    public GameObject objectToShow;
+    public GameObject playerObject;
+    public float colorProgressValue = 0.40f;
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag(targetTag))
+        {
+            // Check if the object is being held by OVRGrabber
+            var grabbable = other.GetComponent<OVRGrabbable>();
+            if (grabbable != null && grabbable.isGrabbed)
+            {
+                return; // Don't trigger while the player is holding it
+            }
+
+            Debug.Log($"[TriggerTarget] {targetTag} detected and released on {gameObject.name}");
+            ExecuteActivation(other.gameObject);
+        }
+    }
+
+    private void ExecuteActivation(GameObject targetObj)
+    {
+        if (successEffect != null)
+        {
+            successEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        // Show next object
+        if (objectToShow != null)
+        {
+            objectToShow.SetActive(true);
+            Debug.Log($"[TriggerTarget] Activated {objectToShow.name}");
+        }
+
+        // Update progress
+        if (playerObject != null)
+        {
+            var manager = playerObject.GetComponent<PlayerManager>();
+            if (manager != null)
+            {
+                var colorManager = Object.FindAnyObjectByType<ColorManager>();
+                if (colorManager != null) colorManager.colorProgress = colorProgressValue;
+            }
+        }
+
+        // Destroy the placed object
+        Destroy(targetObj, 0.1f);
+    }
+}

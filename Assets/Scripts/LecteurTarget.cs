@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class LecteurTarget : MonoBehaviour
 {
@@ -14,39 +14,93 @@ public class LecteurTarget : MonoBehaviour
 
     public GameObject[] fireParticleParents;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger détecté avec : " + other.name + ", tag : " + other.tag);
+    [Header("Environmental Cleanup")]
+    public ParticleSystem[] fogSystems;
+    public ParticleSystem[] thunderSystems;
+    public AudioSource thunderstormAudio;
 
+    private void OnTriggerStay(Collider other)
+    {
         if (other.CompareTag("Tape"))
         {
-            Debug.Log("Objet 'Livre' détecté → destruction");
-
-            if (fog2 != null)
+            // VR Check: Only trigger if the object is released
+            var grabbable = other.GetComponent<OVRGrabbable>();
+            if (grabbable != null && grabbable.isGrabbed)
             {
-                fog2.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                return;
             }
 
-            Destroy(other.gameObject, 0.01f);
+            Debug.Log("Objet 'Tape' détecté et relâché → activation");
+            ExecuteActivation(other.gameObject);
+        }
+    }
 
-            if (playerObject != null)
+    private void ExecuteActivation(GameObject targetObj)
+    {
+        if (fog2 != null)
+        {
+            fog2.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        StopEnvironmentEffects();
+
+        Destroy(targetObj, 0.01f);
+
+        if (playerObject != null)
+        {
+            if (GameAudioManager.Instance != null)
             {
-                playerObject.GetComponent<PlayerManager>().PlayTapeTrack();
-                colorManager.GetComponent<ColorManager>().colorProgress = 0.60f;
+                GameAudioManager.Instance.PlayTapeStep();
             }
-
-            objectToShow.SetActive(true);
-            fog2.Stop();
-            thunder2.Stop();
-            thunder3.Stop();
-
-            for (int i = 0; i < fireParticleParents.Length; i++)
+            else
             {
-                foreach (ParticleSystem ps in fireParticleParents[i].GetComponentsInChildren<ParticleSystem>(true))
+                var pm = playerObject.GetComponent<PlayerManager>();
+                if (pm != null)
                 {
-                    ps.Stop();
+                    pm.PlayTapeTrack();
+                }
+                else
+                {
+                    var vpm = playerObject.GetComponent<VRPlayerManager>();
+                    if (vpm != null) vpm.PlayTapeTrack();
                 }
             }
+            
+            if (colorManager != null)
+                colorManager.colorProgress = 0.60f;
+        }
+
+        if (objectToShow != null) objectToShow.SetActive(true);
+        
+        if (fog2 != null) fog2.Stop();
+        if (thunder2 != null) thunder2.Stop();
+        if (thunder3 != null) thunder3.Stop();
+
+        for (int i = 0; i < fireParticleParents.Length; i++)
+        {
+            if (fireParticleParents[i] == null) continue;
+            foreach (ParticleSystem ps in fireParticleParents[i].GetComponentsInChildren<ParticleSystem>(true))
+            {
+                ps.Stop();
+            }
+        }
+    }
+
+    private void StopEnvironmentEffects()
+    {
+        if (fogSystems != null)
+        {
+            foreach (var ps in fogSystems) if (ps != null) ps.Stop();
+        }
+
+        if (thunderSystems != null)
+        {
+            foreach (var ps in thunderSystems) if (ps != null) ps.Stop();
+        }
+
+        if (thunderstormAudio != null)
+        {
+            thunderstormAudio.Stop();
         }
     }
 }

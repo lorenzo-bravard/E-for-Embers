@@ -11,10 +11,28 @@ public class TrainManager : MonoBehaviour
     private float distanceTravelled = 0f;
     private float splineLength;
 
+    void Awake()
+    {
+        if (splineContainer != null)
+        {
+            splineLength = splineContainer.CalculateLength();
+            
+            // The user specified the train should be at Vector3(-52.7821884,79.0999908,-201.382645)
+            // This corresponds to a specific distance along the spline.
+            // Based on analysis, this is approximately T = 0.7026.
+            normalizedT = 0.7026022f; 
+            distanceTravelled = normalizedT * splineLength;
+            
+            // Snap to this position immediately
+            UpdateTrain(normalizedT);
+        }
+    }
+
     void Start()
     {
-        // Calculate the total length of the spline once
-        splineLength = splineContainer.CalculateLength();
+        // Re-calculate if needed
+        if (splineLength <= 0 && splineContainer != null)
+            splineLength = splineContainer.CalculateLength();
     }
 
     void Update()
@@ -28,15 +46,20 @@ public class TrainManager : MonoBehaviour
         // Calculate normalized position on the spline
         normalizedT = distanceTravelled / splineLength;
 
+        UpdateTrain(normalizedT);
+    }
+
+    void UpdateTrain(float t)
+    {
+        if (splineContainer == null) return;
+
         // Get position and direction from spline
-        Vector3 pos = splineContainer.EvaluatePosition(normalizedT);
-        Vector3 dir = Normalize(splineContainer.EvaluateTangent(normalizedT)); // Make sure the direction is normalized
+        Vector3 pos = splineContainer.EvaluatePosition(t);
+        Vector3 dir = Normalize(splineContainer.EvaluateTangent(t)); 
 
-        // Optional: apply rotation correction (like aligning to train's forward)
         Quaternion rot = Quaternion.LookRotation(dir);
-        Quaternion correction = Quaternion.Euler(0f, 90f, 0f); // Adjust the correction angle as needed
+        Quaternion correction = Quaternion.Euler(0f, 90f, 0f); 
 
-        // Apply position and rotation to the train
         transform.SetPositionAndRotation(pos, rot * correction);
     }
 

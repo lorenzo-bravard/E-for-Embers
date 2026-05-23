@@ -1,0 +1,198 @@
+using UnityEngine;
+using System.Collections.Generic;
+using System.Reflection;
+
+public class VRRightHandController : MonoBehaviour
+{
+    public LineRenderer laserLine;
+    public float laserRange = 15f;
+    public LayerMask interactableLayer;
+    
+    private GameObject _currentHover;
+    private bool _isGrabbing = false;
+    private OVRGrabber _grabber;
+    private MethodInfo _grabBeginMethod;
+    private MethodInfo _grabEndMethod;
+    private FieldInfo _grabCandidatesField;
+
+    void Awake()
+    {
+        _grabber = GetComponent<OVRGrabber>();
+        
+        if (_grabber != null)
+        {
+            // Ensure m_gripTransform is assigned to prevent UnassignedReferenceException
+            FieldInfo gripField = typeof(OVRGrabber).GetField("m_gripTransform", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (gripField != null && gripField.GetValue(_grabber) == null)
+            {
+                gripField.SetValue(_grabber, transform);
+                Debug.Log("[VRGrab] Auto-assigned missing m_gripTransform via reflection.");
+            }
+
+            // Preparation for reflection to trigger OVRGrabber methods
+            _grabBeginMethod = typeof(OVRGrabber).GetMethod("GrabBegin", BindingFlags.Instance | BindingFlags.NonPublic);
+            _grabEndMethod = typeof(OVRGrabber).GetMethod("GrabEnd", BindingFlags.Instance | BindingFlags.NonPublic);
+            _grabCandidatesField = typeof(OVRGrabber).GetField("m_grabCandidates", BindingFlags.Instance | BindingFlags.NonPublic);
+        }
+    }
+
+    void Start()
+    {
+        if (laserLine == null) laserLine = GetComponent<LineRenderer>();
+    }
+
+    void Update()
+    {
+        UpdateLaser();
+        HandleInput();
+    }
+
+    void UpdateLaser()
+    {
+        if (_isGrabbing || (_grabber != null && _grabber.grabbedObject != null))
+        {
+            laserLine.enabled = false;
+            return;
+        }
+
+        laserLine.enabled = true;
+        // Start the laser slightly behind the hand
+        Vector3 startPos = transform.position - transform.forward * 0.1f;
+        laserLine.SetPosition(0, transform.position);
+        
+        RaycastHit hit;
+        // Forgiving SphereCast (0.15m radius)
+        float sphereRadius = 0.15f;
+        if (Physics.SphereCast(startPos, sphereRadius, transform.forward, out hit, laserRange, interactableLayer))
+        {
+            laserLine.SetPosition(1, hit.point);
+            
+            if (_currentHover != hit.collider.gameObject)
+            {
+                _currentHover = hit.collider.gameObject;
+                bool isGrabbable = _currentHover.GetComponent<OVRGrabbable>() != null || _currentHover.GetComponentInParent<OVRGrabbable>() != null;
+                Debug.Log("[Laser] Hit: " + _currentHover.name + (isGrabbable ? " (Grabbable)" : " (Not Grabbable)"));
+                TriggerHaptic(0.1f);
+            }
+        }
+        else
+        {
+            laserLine.SetPosition(1, transform.position + transform.forward * laserRange);
+            _currentHover = null;
+        }
+    }
+
+    void HandleInput()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            Debug.Log("[Input] Index Trigger Pressed");
+            TryGrab();
+        }
+        else if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            Debug.Log("[Input] Button A Pressed");
+            TryGrab();
+        }
+        
+        if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            Debug.Log("[Input] Index Trigger Released");
+            TryRelease();
+        }
+        else if (OVRInput.GetUp(OVRInput.Button.One))
+        {
+            Debug.Log("[Input] Button A Released");
+            TryRelease();
+        }
+    }
+
+    void TryGrab()
+    {
+        Debug.Log("[VRGrab] TryGrab triggered.");
+        if (_grabber == null) return;
+        if (_grabber.grabbedObject != null) return;
+
+        if (_currentHover != null)
+        {
+            OVRGrabbable grabbable = _currentHover.GetComponent<OVRGrabbable>();
+            if (grabbable == null) grabbable = _currentHover.GetComponentInParent<OVRGrabbable>();
+            
+            if (grabbable != null)
+            {
+                Debug.Log("[VRGrab] Distance Grab attempt on: " + grabbable.name);
+                
+                // Save original state to restore if grab fails
+                Vector3 originalPos = grabbable.transform.position;
+                Quaternion originalRot = grabbable.transform.rotation;
+
+                // TELEPORT HACK: Move object to hand so OVRGrabber accepts it
+                grabbable.transform.position = transform.position;
+                grabbable.transform.rotation = transform.rotation;
+
+                // Force candidates list update
+                var candidates = (Dictionary<OVRGrabbable, int>)_grabCandidatesField.GetValue(_grabber);
+                if (!candidates.ContainsKey((OVRGrabbable)grabbable)) candidates.Add((OVRGrabbable)grabbable, 1);
+                
+                // Trigger Grab
+                _grabBeginMethod.Invoke(_grabber, null);
+                
+                if (_grabber.grabbedObject != null)
+                {
+                    Debug.Log("[VRGrab] Distance Grab SUCCESS: " + _grabber.grabbedObject.name);
+                    
+                    // Force the object to be perfectly centered in the hand
+                    _grabber.grabbedObject.transform.position = transform.position;
+                    _grabber.grabbedObject.transform.rotation = transform.rotation;
+                    
+                    // Ensure it stays kinematic while held to follow the hand perfectly
+                    Rigidbody heldRb = _grabber.grabbedObject.GetComponent<Rigidbody>();
+                    if (heldRb != null)
+                    {
+                        heldRb.isKinematic = true;
+                        heldRb.useGravity = false;
+                    }
+
+                    _isGrabbing = true;
+                    TriggerHaptic(0.3f);
+                    return;
+                }
+                else
+                {
+                    // Restore original state if grab failed
+                    grabbable.transform.position = originalPos;
+                    grabbable.transform.rotation = originalRot;
+                    Debug.LogWarning("[VRGrab] Distance Grab FAILED.");
+                }
+            }
+        }
+
+        _grabBeginMethod.Invoke(_grabber, null);
+        if (_grabber.grabbedObject != null)
+        {
+            Debug.Log("[VRGrab] Proximity Grab SUCCESS: " + _grabber.grabbedObject.name);
+            _isGrabbing = true;
+            TriggerHaptic(0.3f);
+        }
+    }
+
+    void TryRelease()
+    {
+        if (_grabber != null && _isGrabbing)
+        {
+            _grabEndMethod.Invoke(_grabber, null);
+            _isGrabbing = false;
+        }
+    }
+
+    void TriggerHaptic(float amplitude)
+    {
+        OVRInput.SetControllerVibration(0.1f, amplitude, OVRInput.Controller.RTouch);
+        Invoke("StopHaptic", 0.05f);
+    }
+
+    void StopHaptic()
+    {
+        OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+    }
+}

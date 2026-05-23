@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class TrainPlant : MonoBehaviour
 {
@@ -38,9 +38,13 @@ public class TrainPlant : MonoBehaviour
 
     public GameObject[] fireParticleParents;
 
+    private bool wasGrabbed = false;
+    private OVRGrabbable grabbable;
+
     private void Start()
     {
         trainRoot = transform.parent;
+        grabbable = GetComponent<OVRGrabbable>();
 
         // Set initial position and rotation in local train space
         transform.localPosition = initialLocalPosition;
@@ -53,29 +57,48 @@ public class TrainPlant : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody>();
         }
 
-        rb.isKinematic = false;
+        rb.isKinematic = true;
     }
 
     private void LateUpdate()
     {
+        // VR Release Detection
+        if (grabbable != null)
+        {
+            if (grabbable.isGrabbed)
+            {
+                wasGrabbed = true;
+                isHeld = true; // Sync for consistency
+            }
+            else if (wasGrabbed)
+            {
+                wasGrabbed = false;
+                isHeld = false;
+                Debug.Log("[TrainPlant] VR Release detected. Triggering cleanup.");
+                // For VR, we assume releasing it means it's "placed" if we want it to work like before
+                // Alternatively, we could check if it's near the ground, but let's keep it simple as requested
+                PlaceOnGround(null); 
+            }
+        }
+
         if (player == null || Camera.main == null) return;
 
         Transform cam = Camera.main.transform;
         float distanceToPlant = Vector3.Distance(player.position, transform.position);
 
-        // Pick up
+        // Pick up (Desktop)
         if (!isHeld && !isPlaced && distanceToPlant <= interactionDistance && Input.GetKeyDown(interactKey))
         {
             PickUp(cam);
         }
-        // Place
-        else if (isHeld && Input.GetKeyDown(interactKey))
+        // Place (Desktop)
+        else if (isHeld && !wasGrabbed && Input.GetKeyDown(interactKey))
         {
             PlaceOnGround(cam);
         }
 
-        // Keep it in front of camera
-        if (isHeld)
+        // Keep it in front of camera (Desktop only)
+        if (isHeld && !wasGrabbed)
         {
             Vector3 hoverPosition = cam.position + cam.forward * hoverOffset.z + cam.up * hoverOffset.y + cam.right * hoverOffset.x;
             transform.position = hoverPosition;
@@ -96,37 +119,75 @@ public class TrainPlant : MonoBehaviour
     {
         isHeld = false;
         isPlaced = true;
-        rb.isKinematic = false;
+        rb.isKinematic = true; // Keep kinematic as requested earlier
 
-        Vector3 forwardTargetWorld = cam.position + cam.forward * placeDistance;
+        if (cam != null) // Desktop specific placement
+        {
+            Vector3 forwardTargetWorld = cam.position + cam.forward * placeDistance;
+            Vector3 localTarget = trainRoot.InverseTransformPoint(forwardTargetWorld);
 
-        Vector3 localTarget = trainRoot.InverseTransformPoint(forwardTargetWorld);
+            localTarget.x = Mathf.Clamp(localTarget.x, clampX.x, clampX.y);
+            localTarget.z = Mathf.Clamp(localTarget.z, clampZ.x, clampZ.y);
+            localTarget.y = floorHeight;
 
-        localTarget.x = Mathf.Clamp(localTarget.x, clampX.x, clampX.y);
-        localTarget.z = Mathf.Clamp(localTarget.z, clampZ.x, clampZ.y);
-        localTarget.y = floorHeight;
-
-        transform.position = trainRoot.TransformPoint(localTarget);
-        transform.rotation = Quaternion.Euler(initialLocalRotation);
-        transform.SetParent(trainRoot);
+            transform.position = trainRoot.TransformPoint(localTarget);
+            transform.rotation = Quaternion.Euler(initialLocalRotation);
+            transform.SetParent(trainRoot);
+        }
+        else // VR specific or generic release
+        {
+            // Just ensure it's parented back to train if it wasn't
+            if (transform.parent != trainRoot) transform.SetParent(trainRoot);
+        }
 
         if (playerObject != null)
         {
-            playerObject.GetComponent<PlayerManager>().PlayPlantTrack();
-            colorManager.GetComponent<ColorManager>().colorProgress = 0.80f;
-        }
-        fog3.Stop();
-        fog4.Stop();
-        thunder4.Stop();
-        thunder5.Stop();
-        thunderstromAudio.Stop();
-
-        for (int i = 0; i < fireParticleParents.Length; i++)
-        {
-            foreach (ParticleSystem ps in fireParticleParents[i].GetComponentsInChildren<ParticleSystem>(true))
+            if (GameAudioManager.Instance != null)
             {
-                ps.Stop();
+                GameAudioManager.Instance.PlayPlantStep();
             }
+            else
+            {
+                var pm = playerObject.GetComponent<PlayerManager>();
+                if (pm != null)
+                {
+                    pm.PlayPlantTrack();
+                }
+                else
+                {
+                    var vpm = playerObject.GetComponent<VRPlayerManager>();
+                    if (vpm != null) vpm.PlayPlantTrack();
+                }
+            }
+            
+            if (colorManager != null)
+                colorManager.colorProgress = 0.80f;
+        }
+
+        if (fog3 != null) fog3.Stop();
+        if (fog4 != null) fog4.Stop();
+        if (thunder4 != null) thunder4.Stop();
+        if (thunder5 != null) thunder5.Stop();
+        if (thunderstromAudio != null) thunderstromAudio.Stop();
+
+        if (fireParticleParents != null)
+        {
+            for (int i = 0; i < fireParticleParents.Length; i++)
+            {
+                if (fireParticleParents[i] == null) continue;
+                foreach (ParticleSystem ps in fireParticleParents[i].GetComponentsInChildren<ParticleSystem>(true))
+                {
+                    ps.Stop();
+                }
+            }
+        }
+
+        // Fallback: Stop all PS with 'fire', 'flame', or 'burn' in their name in the scene
+        foreach (var ps in Object.FindObjectsByType<ParticleSystem>(FindObjectsInactive.Include))
+        {
+            string psName = ps.name.ToLower();
+            if (psName.Contains("fire") || psName.Contains("flame") || psName.Contains("burn")) 
+                ps.Stop();
         }
     }
 

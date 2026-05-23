@@ -15,7 +15,7 @@
 ////    private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
 ////    private int LayerNumber; //layer index
 
-////    [Tooltip("Ne doivent pouvoir être touchés que les objets sur ce layer")]
+////    [Tooltip("Ne doivent pouvoir ï¿½tre touchï¿½s que les objets sur ce layer")]
 ////    public LayerMask pickUpLayerMask;
 
 ////    //Reference to script which includes mouse movement of player (looking around)
@@ -177,24 +177,24 @@
 
 //public class PickUpScript : MonoBehaviour
 //{
-//    [Header("Références")]
+//    [Header("Rï¿½fï¿½rences")]
 //    public GameObject player;
-//    public Transform holdPos;               // Doit être enfant de la caméra ou du player
+//    public Transform holdPos;               // Doit ï¿½tre enfant de la camï¿½ra ou du player
 
-//    [Header("Paramètres Pickup / Throw")]
-//    public float pickUpRange = 5f;          // Portée du pickup
+//    [Header("Paramï¿½tres Pickup / Throw")]
+//    public float pickUpRange = 5f;          // Portï¿½e du pickup
 //    public float throwForce = 500f;       // Force de lancement
-//    public LayerMask pickUpLayerMask;       // Coche uniquement le layer "PickUp" dans l’inspector
+//    public LayerMask pickUpLayerMask;       // Coche uniquement le layer "PickUp" dans lï¿½inspector
 
 //    [Header("Rotation de l'objet")]
 //    [SerializeField]
 //    private float rotationSensitivity = 1f;
 
-//    // État interne
+//    // ï¿½tat interne
 //    private GameObject heldObj;
 //    private Rigidbody heldObjRb;
 //    private int holdLayer;
-//    private Transform originalParent;      // <— On stocke ici le parent d’origine
+//    private Transform originalParent;      // <ï¿½ On stocke ici le parent dï¿½origine
 
 //    private bool canDrop = true;
 
@@ -247,23 +247,23 @@
 
 //    private void PickUpObject(GameObject pickUpObj)
 //    {
-//        // 1) On sauvegarde le parent existant (souvent le train, ou décor mobile)
+//        // 1) On sauvegarde le parent existant (souvent le train, ou dï¿½cor mobile)
 //        originalParent = pickUpObj.transform.parent;
 
-//        // 2) On détache de ce parent
+//        // 2) On dï¿½tache de ce parent
 //        pickUpObj.transform.SetParent(null);
 
-//        // 3) On récupère le Rigidbody
+//        // 3) On rï¿½cupï¿½re le Rigidbody
 //        Rigidbody rb = pickUpObj.GetComponent<Rigidbody>();
 //        if (rb == null) return;
 
 //        heldObj = pickUpObj;
 //        heldObjRb = rb;
 
-//        // 4) On passe en kinematic pour désactiver la physique
+//        // 4) On passe en kinematic pour dï¿½sactiver la physique
 //        heldObjRb.isKinematic = true;
 
-//        // 5) On rattache à holdPos et on recentre localement
+//        // 5) On rattache ï¿½ holdPos et on recentre localement
 //        heldObj.transform.SetParent(holdPos);
 //        heldObj.transform.localPosition = Vector3.zero;
 //        heldObj.transform.localRotation = Quaternion.identity;
@@ -279,7 +279,7 @@
 
 //    private void DropObject()
 //    {
-//        // 1) Réactive collision joueur / objet
+//        // 1) Rï¿½active collision joueur / objet
 //        Physics.IgnoreCollision(
 //            heldObj.GetComponent<Collider>(),
 //            player.GetComponent<Collider>(),
@@ -290,13 +290,13 @@
 //        heldObj.layer = 0;
 //        heldObjRb.isKinematic = false;
 
-//        // 3) On rattache à son ancien parent (le train)
+//        // 3) On rattache ï¿½ son ancien parent (le train)
 //        if (originalParent != null)
 //            heldObj.transform.SetParent(originalParent);
 //        else
 //            heldObj.transform.SetParent(null);
 
-//        // 4) Remise à zéro de l’état
+//        // 4) Remise ï¿½ zï¿½ro de lï¿½ï¿½tat
 //        heldObj = null;
 //        heldObjRb = null;
 //        originalParent = null;
@@ -325,7 +325,7 @@
 
 //    private void ThrowObject()
 //    {
-//        // 1) Réactive collision joueur / objet
+//        // 1) Rï¿½active collision joueur / objet
 //        Physics.IgnoreCollision(
 //            heldObj.GetComponent<Collider>(),
 //            player.GetComponent<Collider>(),
@@ -335,7 +335,7 @@
 //        heldObj.layer = 0;
 //        heldObjRb.isKinematic = false;
 
-//        // 2) On détache complètement pour lancer
+//        // 2) On dï¿½tache complï¿½tement pour lancer
 //        heldObj.transform.SetParent(null);
 
 //        // 3) On applique la force
@@ -365,20 +365,20 @@ using UnityEngine;
 
 public class PickUpScript : MonoBehaviour
 {
-    [Header("Références")]
+    [Header("Rï¿½fï¿½rences")]
     public GameObject player;
-    public Transform holdPos;               // Doit être enfant de la caméra ou du player
+    public Transform holdPos;               // Doit ï¿½tre enfant de la camï¿½ra ou du player
 
-    [Header("Paramètres Pickup / Throw")]
-    public float pickUpRange = 5f;          // Portée du pickup
+    [Header("Paramï¿½tres Pickup / Throw")]
+    public float pickUpRange = 5f;          // Portï¿½e du pickup
     public float throwForce = 500f;       // Force de lancement
-    public LayerMask pickUpLayerMask;       // Coche le(s) layer(s) de tes objets ramassables ("PickUp", éventuellement "Default")
+    public LayerMask pickUpLayerMask;       // Coche le(s) layer(s) de tes objets ramassables ("PickUp", ï¿½ventuellement "Default")
 
     [Header("Rotation de l'objet")]
     [SerializeField]
     private float rotationSensitivity = 1f;
 
-    // États internes
+    // ï¿½tats internes
     private GameObject heldObj;
     private Rigidbody heldObjRb;
     private Transform originalParent;
@@ -438,7 +438,7 @@ public class PickUpScript : MonoBehaviour
 
     private void PickUpObject(GameObject pickUpObj)
     {
-        // Sauvegarde et détache du parent d'origine
+        // Sauvegarde et dï¿½tache du parent d'origine
         originalParent = pickUpObj.transform.parent;
         pickUpObj.transform.SetParent(null);
 
@@ -449,21 +449,21 @@ public class PickUpScript : MonoBehaviour
         foreach (var mc in pickUpObj.GetComponentsInChildren<MeshCollider>())
             mc.convex = true;
 
-        // Récupère le Rigidbody
+        // Rï¿½cupï¿½re le Rigidbody
         heldObjRb = pickUpObj.GetComponent<Rigidbody>();
         if (heldObjRb == null) return;
 
         heldObj = pickUpObj;
 
-        // Passe en kinematic (désactive la physique)
+        // Passe en kinematic (dï¿½sactive la physique)
         heldObjRb.isKinematic = true;
 
-        // Attache à holdPos et recentre
+        // Attache ï¿½ holdPos et recentre
         heldObj.transform.SetParent(holdPos);
         heldObj.transform.localPosition = Vector3.zero;
         heldObj.transform.localRotation = Quaternion.identity;
 
-        // Définit le layer pour ignorer collision avec le joueur
+        // Dï¿½finit le layer pour ignorer collision avec le joueur
         heldObj.layer = holdLayer;
         Physics.IgnoreCollision(
             heldObj.GetComponent<Collider>(),
@@ -474,31 +474,31 @@ public class PickUpScript : MonoBehaviour
 
     private void DropObject()
     {
-        // Réactive collision joueur / objet
+        // Rï¿½active collision joueur / objet
         Physics.IgnoreCollision(
             heldObj.GetComponent<Collider>(),
             player.GetComponent<Collider>(),
             false
         );
 
-        // Rétablit le layer et la physique
+        // Rï¿½tablit le layer et la physique
         heldObj.layer = originalLayer;
-        heldObjRb.isKinematic = false;
+        heldObjRb.isKinematic = true;
 
-        // Ajuste la position pour que tout le collider reste au-dessus de Y=2 (InvisibleFloor)
+        // Ajuste la position pour que tout le collider reste au-dessus du sol
         Collider col = heldObj.GetComponent<Collider>();
         if (col != null)
         {
-            float halfHeight = col.bounds.extents.y;
-            Vector3 pos = heldObj.transform.position;
-            pos.y = Mathf.Max(pos.y, 2f + halfHeight);
-            heldObj.transform.position = pos;
+            // float halfHeight = col.bounds.extents.y;
+            // Vector3 pos = heldObj.transform.position;
+            // pos.y = Mathf.Max(pos.y, 2f + halfHeight);
+            // heldObj.transform.position = pos;
         }
 
         // Rattache au parent d'origine (train)
         heldObj.transform.SetParent(originalParent);
 
-        // Réinitialise l'état
+        // Rï¿½initialise l'ï¿½tat
         heldObj = null;
         heldObjRb = null;
         originalParent = null;
@@ -527,22 +527,22 @@ public class PickUpScript : MonoBehaviour
 
     private void ThrowObject()
     {
-        // Réactive collision joueur / objet
+        // Rï¿½active collision joueur / objet
         Physics.IgnoreCollision(
             heldObj.GetComponent<Collider>(),
             player.GetComponent<Collider>(),
             false
         );
 
-        // Rétablit layer et physique
+        // Rï¿½tablit layer et physique
         heldObj.layer = originalLayer;
         heldObjRb.isKinematic = false;
 
-        // Détache et lance
+        // Dï¿½tache et lance
         heldObj.transform.SetParent(null);
         heldObjRb.AddForce(transform.forward * throwForce);
 
-        // Réinitialise l'état
+        // Rï¿½initialise l'ï¿½tat
         heldObj = null;
         heldObjRb = null;
         originalParent = null;

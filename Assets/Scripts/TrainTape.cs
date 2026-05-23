@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class TrainTape : MonoBehaviour
 {
@@ -43,7 +43,7 @@ public class TrainTape : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody>();
         }
 
-        rb.isKinematic = false;
+        rb.isKinematic = true;
     }
 
     private void LateUpdate()
@@ -82,11 +82,14 @@ public class TrainTape : MonoBehaviour
         transform.position = cam.position + cam.forward * hoverOffset.z;
     }
 
+    public GameObject playerObject;
+    public ColorManager colorManager;
+
     private void PlaceOnGround(Transform cam)
     {
         isHeld = false;
         isPlaced = true;
-        rb.isKinematic = false;
+        rb.isKinematic = true;
 
         // Calculate where the player is looking
         Vector3 forwardTargetWorld = cam.position + cam.forward * placeDistance;
@@ -104,7 +107,30 @@ public class TrainTape : MonoBehaviour
         transform.rotation = Quaternion.Euler(initialLocalRotation);
         transform.SetParent(trainRoot);
 
-    }
+        if (playerObject != null)
+        {
+            if (GameAudioManager.Instance != null)
+            {
+                GameAudioManager.Instance.PlayTapeStep();
+            }
+            else
+            {
+                var pm = playerObject.GetComponent<PlayerManager>();
+                if (pm != null)
+                {
+                    pm.PlayTapeTrack();
+                }
+                else
+                {
+                    var vpm = playerObject.GetComponent<VRPlayerManager>();
+                    if (vpm != null) vpm.PlayTapeTrack();
+                }
+            }
+            
+            if (colorManager != null)
+                colorManager.colorProgress = 0.60f;
+        }
+}
 
 
 }
