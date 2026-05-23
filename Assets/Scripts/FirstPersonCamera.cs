@@ -18,7 +18,6 @@ public class FirstPersonCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         playerBody = transform.parent;
 
-        // Exclude the specified layer from camera rendering
         int excludedLayer = LayerMask.NameToLayer(excludedLayerName);
         if (excludedLayer >= 0)
         {
@@ -36,12 +35,10 @@ public class FirstPersonCamera : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * (invertY ? 1 : -1);
 
-        // Vertical rotation (up/down)
         xRotation += mouseY;
         xRotation = Mathf.Clamp(xRotation, -maxVerticalAngle, maxVerticalAngle);
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-        // Horizontal rotation (left/right) - rotates entire player
         playerBody.Rotate(Vector3.up * mouseX);
     }
 }

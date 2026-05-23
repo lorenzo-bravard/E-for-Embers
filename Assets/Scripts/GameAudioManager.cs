@@ -27,14 +27,12 @@ public class GameAudioManager : MonoBehaviour
 
     private void Start()
     {
-        // Initialize sources if not assigned
         SetupSource(ref drillSource, "DrillSource");
         SetupSource(ref bookSource, "BookSource");
         SetupSource(ref tapeSource, "TapeSource");
         SetupSource(ref plantSource, "PlantSource");
         SetupSource(ref themeSource, "ThemeSource");
         
-        // Setup clips
         if (drillSource) drillSource.clip = drillTrack;
         if (bookSource) bookSource.clip = bookTrack;
         if (tapeSource) tapeSource.clip = tapeTrack;

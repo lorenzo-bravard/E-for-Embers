@@ -19,17 +19,16 @@ public class VRGrabbableExtension : MonoBehaviour
         {
             if (_grabbable.isGrabbed)
             {
-                // When grabbed, we might want to ensure it's unparented or parented to hand
-                // OVRGrabbable usually handles parenting to the grabber.
+
             }
             else
             {
-                // When released, restore original parent (the Train)
+
                 if (transform.parent != _originalParent)
                 {
                     transform.SetParent(_originalParent);
                     
-                    // Reset kinematic state if needed
+
                     if (_rb != null)
                     {
                         _rb.isKinematic = true;

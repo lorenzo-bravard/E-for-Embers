@@ -18,7 +18,6 @@ public class ParticleSound : MonoBehaviour
     {
         int currentCount = ps.particleCount;
 
-        // If particles increased, something was emitted
         if (currentCount > lastParticleCount)
         {
             if (!audioSource.isPlaying)

@@ -21,11 +21,11 @@ public class TriggerTarget : MonoBehaviour
     {
         if (other.CompareTag(targetTag))
         {
-            // Check if the object is being held by OVRGrabber
+
             var grabbable = other.GetComponent<OVRGrabbable>();
             if (grabbable != null && grabbable.isGrabbed)
             {
-                return; // Don't trigger while the player is holding it
+                return; 
             }
 
             Debug.Log($"[TriggerTarget] {targetTag} detected and released on {gameObject.name}");
@@ -42,14 +42,14 @@ public class TriggerTarget : MonoBehaviour
 
         StopEnvironmentEffects();
 
-        // Show next object
+
         if (objectToShow != null)
         {
             objectToShow.SetActive(true);
             Debug.Log($"[TriggerTarget] Activated {objectToShow.name}");
         }
 
-        // Update progress and play music
+
         if (playerObject != null)
         {
             var colorManager = Object.FindAnyObjectByType<ColorManager>();
@@ -63,7 +63,7 @@ public class TriggerTarget : MonoBehaviour
             }
             else
             {
-                // Fallback to old manager logic
+
                 var manager = playerObject.GetComponent<PlayerManager>();
                 if (manager != null)
                 {
@@ -71,14 +71,14 @@ public class TriggerTarget : MonoBehaviour
                 }
                 else
                 {
-                    // Try VR manager
+
                     var vpm = playerObject.GetComponent<VRPlayerManager>();
                     if (vpm != null) vpm.PlayBookTrack();
                 }
             }
         }
 
-        // Destroy the placed object
+
         Destroy(targetObj, 0.1f);
     }
 

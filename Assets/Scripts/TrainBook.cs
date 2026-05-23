@@ -7,10 +7,10 @@ public class TrainBook : MonoBehaviour
     public Transform player;
 
     [Header("Position Settings")]
-    public Vector3 initialLocalPosition;         // Local offset inside the train for starting point
-    public Vector3 initialLocalRotation;         // Euler rotation at start
-    public Vector3 hoverOffset = new Vector3(0, 1.5f, 0.5f);   // Offset from player for hovering book
-    public Vector3 tableLocalOffset;             // Local offset inside the train for where book goes on table
+    public Vector3 initialLocalPosition;        
+    public Vector3 initialLocalRotation;      
+    public Vector3 hoverOffset = new Vector3(0, 1.5f, 0.5f);   
+    public Vector3 tableLocalOffset;            
 
     [Header("Settings")]
     public float interactionDistance = 2f;
@@ -40,7 +40,6 @@ public class TrainBook : MonoBehaviour
     {
         trainRoot = transform.parent;
 
-        // Set initial local position inside the train
         transform.localPosition = initialLocalPosition;
         transform.localRotation = Quaternion.Euler(initialLocalRotation);
 
@@ -84,7 +83,7 @@ public class TrainBook : MonoBehaviour
     {
         isHeld = true;
         rb.isKinematic = true;
-        transform.SetParent(null); // Keep in world space for hover control
+        transform.SetParent(null);
     }
 
     private IEnumerator PlaceBookOnTable()

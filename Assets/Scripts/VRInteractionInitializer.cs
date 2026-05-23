@@ -20,9 +20,7 @@ public class VRInteractionInitializer : MonoBehaviour
 
             if (grabber != null && trigger != null)
             {
-                // Force configuration of OVRGrabber via its public/protected methods if possible
-                // Most OVRGrabber versions allow setting volumes. 
-                // If not, this script serves as a reminder for manual setup.
+
                 Debug.Log("[VRInitializer] OVRGrabber and Trigger detected.");
             }
         }

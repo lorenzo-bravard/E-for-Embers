@@ -4,10 +4,10 @@ using System;
 
 public class TrainManager : MonoBehaviour
 {
-    public SplineContainer splineContainer; // Assign in Inspector
+    public SplineContainer splineContainer;
     public float speed = 5f;
 
-    public float normalizedT { get; private set; } // Accessible from other scripts
+    public float normalizedT { get; private set; } 
     private float distanceTravelled = 0f;
     private float splineLength;
 
@@ -17,20 +17,16 @@ public class TrainManager : MonoBehaviour
         {
             splineLength = splineContainer.CalculateLength();
             
-            // The user specified the train should be at Vector3(-52.7821884,79.0999908,-201.382645)
-            // This corresponds to a specific distance along the spline.
-            // Based on analysis, this is approximately T = 0.7026.
+
             normalizedT = 0.7026022f; 
             distanceTravelled = normalizedT * splineLength;
             
-            // Snap to this position immediately
             UpdateTrain(normalizedT);
         }
     }
 
     void Start()
     {
-        // Re-calculate if needed
         if (splineLength <= 0 && splineContainer != null)
             splineLength = splineContainer.CalculateLength();
     }
@@ -39,11 +35,9 @@ public class TrainManager : MonoBehaviour
     {
         distanceTravelled += speed * Time.deltaTime;
 
-        // Looping
         if (distanceTravelled > splineLength)
             distanceTravelled -= splineLength;
 
-        // Calculate normalized position on the spline
         normalizedT = distanceTravelled / splineLength;
 
         UpdateTrain(normalizedT);
@@ -53,7 +47,6 @@ public class TrainManager : MonoBehaviour
     {
         if (splineContainer == null) return;
 
-        // Get position and direction from spline
         Vector3 pos = splineContainer.EvaluatePosition(t);
         Vector3 dir = Normalize(splineContainer.EvaluateTangent(t)); 
 
@@ -73,7 +66,6 @@ public class TrainManager : MonoBehaviour
 
     public float GetCurrentCurvature()
     {
-        // Calculate how sharp the current turn is
         float sampleDistance = 0.05f;
         Vector3 previousPos = splineContainer.EvaluatePosition(Mathf.Max(0, normalizedT - sampleDistance));
         Vector3 nextPos = splineContainer.EvaluatePosition(Mathf.Min(1, normalizedT + sampleDistance));

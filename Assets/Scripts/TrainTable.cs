@@ -25,7 +25,6 @@ public class TrainTable : MonoBehaviour
         transform.localPosition = tableOffset;
         transform.localRotation = Quaternion.identity;
 
-        // Setup highlight materials
         tableRenderer = GetComponent<Renderer>();
         if (tableRenderer) originalMaterial = tableRenderer.material;
     }
@@ -34,11 +33,9 @@ public class TrainTable : MonoBehaviour
     {
         if (trainManager == null) return;
 
-        // Apply tilt during turns
         float tiltAmount = -trainManager.GetCurrentCurvature() * maxTiltAngle;
         transform.localRotation = Quaternion.Euler(0, 0, tiltAmount);
 
-        // Maintain position
         transform.localPosition = tableOffset;
     }
 

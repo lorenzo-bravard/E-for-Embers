@@ -19,7 +19,7 @@ public class CubeTarget : MonoBehaviour
     {
         if (other.CompareTag("canPickUp0"))
         {
-            // VR Check: Only trigger if the object is released
+
             var grabbable = other.GetComponent<OVRGrabbable>();
             if (grabbable != null && grabbable.isGrabbed)
             {
@@ -52,7 +52,7 @@ public class CubeTarget : MonoBehaviour
         }
         else
         {
-            // Fallback to old manager logic
+   
             var pm = playerObject.GetComponent<PlayerManager>();
             if (pm != null) pm.PlayDrillMusicSequential();
             else {

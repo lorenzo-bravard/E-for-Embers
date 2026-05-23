@@ -19,8 +19,8 @@ public class TrainTape : MonoBehaviour
     public float floorHeight = 0.49f;
 
     [Header("Train Boundaries (Local Space)")]
-    public Vector2 clampX = new Vector2(-1.5f, 1.5f);  // Left/Right limit
-    public Vector2 clampZ = new Vector2(-4f, 4f);      // Front/Back limit
+    public Vector2 clampX = new Vector2(-1.5f, 1.5f);  
+    public Vector2 clampZ = new Vector2(-4f, 4f);      
 
 
     private bool isHeld = false;
@@ -32,7 +32,6 @@ public class TrainTape : MonoBehaviour
     {
         trainRoot = transform.parent;
 
-        // Set initial position and rotation in local train space
         transform.localPosition = initialLocalPosition;
         transform.localRotation = Quaternion.Euler(initialLocalRotation);
 
@@ -91,18 +90,15 @@ public class TrainTape : MonoBehaviour
         isPlaced = true;
         rb.isKinematic = true;
 
-        // Calculate where the player is looking
         Vector3 forwardTargetWorld = cam.position + cam.forward * placeDistance;
 
-        // Convert to train-local space
         Vector3 localTarget = trainRoot.InverseTransformPoint(forwardTargetWorld);
 
-        // Clamp only X and Z
+
         localTarget.x = Mathf.Clamp(localTarget.x, clampX.x, clampX.y);
         localTarget.z = Mathf.Clamp(localTarget.z, clampZ.x, clampZ.y);
-        localTarget.y = floorHeight; // Always 0.49
+        localTarget.y = floorHeight; 
 
-        // Apply position and rotation
         transform.position = trainRoot.TransformPoint(localTarget);
         transform.rotation = Quaternion.Euler(initialLocalRotation);
         transform.SetParent(trainRoot);

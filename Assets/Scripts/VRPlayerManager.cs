@@ -5,7 +5,7 @@ using System.Collections;
 public class VRPlayerManager : MonoBehaviour
 {
     [Header("Player Settings")]
-    public float yOffset = 0.8f; // Match Remy's height
+    public float yOffset = 0.8f; 
 
     [Header("Audio")]
     public AudioClip track1;
@@ -20,7 +20,7 @@ public class VRPlayerManager : MonoBehaviour
     public AudioSource themeSource;
 
     private CharacterController _cc;
-    private int _framesToGlue = 5; // Glue to train for first few frames
+    private int _framesToGlue = 5; 
 
     void Awake()
     {
@@ -29,20 +29,18 @@ public class VRPlayerManager : MonoBehaviour
 
     void Start()
     {
-        // Force initial local height and position
         StartCoroutine(InitialGlueRoutine());
     }
 
     private IEnumerator InitialGlueRoutine()
     {
-        // Temporarily disable CC to allow parent teleportation to propagate correctly
+
         if (_cc != null) _cc.enabled = false;
 
-        // Force local position for a few frames to ensure we follow the train's initial jump
+
         for (int i = 0; i < _framesToGlue; i++)
         {
-            // Recenter HMD to align physical position with virtual rig origin
-            // Use displaying status to avoid errors in Editor without headset
+
             if (i == 0 && OVRManager.display != null) OVRManager.display.RecenterPose();
 
             Vector3 pos = transform.localPosition;
@@ -59,7 +57,7 @@ public class VRPlayerManager : MonoBehaviour
 
     void LateUpdate()
     {
-        // Safety height check to prevent falling through floor
+
         Vector3 localPos = transform.localPosition;
         if (Mathf.Abs(localPos.y - yOffset) > 0.1f)
         {
@@ -68,7 +66,7 @@ public class VRPlayerManager : MonoBehaviour
         }
     }
 
-    // Music methods maintained for compatibility
+ 
     public void PlayDrillMusicSequential()
     {
         if (track1 != null && trackSource1 != null)

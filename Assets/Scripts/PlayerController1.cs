@@ -106,7 +106,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        // Verrouille et masque le curseur
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -117,35 +116,24 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
     }
 
-    /// <summary>
-    /// Gère le mouvement de la souris pour faire pivoter la vue
-    /// </summary>
     private void HandleMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        // Rotation horizontale du joueur
         transform.Rotate(Vector3.up * mouseX);
 
-        // Rotation verticale de la caméra
         cameraPitch -= mouseY;
         cameraPitch = Mathf.Clamp(cameraPitch, minPitch, maxPitch);
         playerCamera.localEulerAngles = Vector3.right * cameraPitch;
     }
 
-    /// <summary>
-    /// Gère les déplacements du joueur (avant/arrière, gauche/droite) sans saut,
-    /// supportant les claviers QWERTY et AZERTY (ZQSD)
-    /// </summary>
     private void HandleMovement()
     {
-        // Lecture du déplacement horizontal (D/Q pour AZERTY, D/A pour QWERTY)
         float x = 0f;
         if (Input.GetKey(KeyCode.D)) x += 1f;
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.A)) x -= 1f;
 
-        // Lecture du déplacement vertical (Z/S pour AZERTY, W/S pour QWERTY)
         float z = 0f;
         if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.W)) z += 1f;
         if (Input.GetKey(KeyCode.S)) z -= 1f;
@@ -153,10 +141,9 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move.normalized * moveSpeed * Time.deltaTime);
 
-        // Applique la gravité
         if (controller.isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f; // Maintient le joueur au sol
+            velocity.y = -2f; 
         }
 
         velocity.y += gravity * Time.deltaTime;

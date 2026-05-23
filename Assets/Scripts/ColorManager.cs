@@ -63,12 +63,12 @@ public class ColorManager : MonoBehaviour
         {
             float t = colorProgress / 0.5f;
 
-            // Black & white to vintage
+
             colorAdjustments.saturation.value = Mathf.Lerp(-100f, -40f, t);
 
-            // Strong warm vintage tone
-            Color vintageShadows = new Color(0.6f, 0.25f, 0.1f);    // reddish-brown
-            Color vintageHighlights = new Color(1.0f, 0.75f, 0.5f); // orange-yellow glow
+
+            Color vintageShadows = new Color(0.6f, 0.25f, 0.1f);   
+            Color vintageHighlights = new Color(1.0f, 0.75f, 0.5f); 
 
             splitToning.shadows.value = Color.Lerp(Color.gray, vintageShadows, t);
             splitToning.highlights.value = Color.Lerp(Color.gray, vintageHighlights, t);
@@ -77,7 +77,7 @@ public class ColorManager : MonoBehaviour
         {
             float t = (colorProgress - 0.5f) / 0.5f;
 
-            // Vintage to color
+
             colorAdjustments.saturation.value = Mathf.Lerp(-40f, 0f, t);
 
             Color vintageShadows = new Color(0.6f, 0.25f, 0.1f);

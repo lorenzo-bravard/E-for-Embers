@@ -22,11 +22,11 @@ public class VRCollisionHandler : MonoBehaviour
         if (!pushBackEnabled || characterController == null || centerEyeAnchor == null || cameraRig == null)
             return;
 
-        // Calculate horizontal offset between HMD and CharacterController
+
         Vector3 hmdPosition = centerEyeAnchor.position;
-        Vector3 ccPosition = transform.position; // CharacterController is on this GameObject
+        Vector3 ccPosition = transform.position; 
         
-        // Flatten to horizontal plane (XZ)
+
         Vector2 hmdPosXZ = new Vector2(hmdPosition.x, hmdPosition.z);
         Vector2 ccPosXZ = new Vector2(ccPosition.x, ccPosition.z);
 
@@ -34,14 +34,13 @@ public class VRCollisionHandler : MonoBehaviour
 
         if (distance > maxDistance)
         {
-            // The player has walked physically too far from the virtual body (which is blocked by walls)
-            // We need to shift the CameraRig to bring the HMD back towards the CC
+
             Vector2 direction = (hmdPosXZ - ccPosXZ).normalized;
             Vector2 correctionXZ = direction * (distance - maxDistance);
             
             Vector3 correction = new Vector3(correctionXZ.x, 0, correctionXZ.y);
             
-            // Apply correction to the Rig to offset the physical movement
+
             cameraRig.position -= correction;
         }
     }

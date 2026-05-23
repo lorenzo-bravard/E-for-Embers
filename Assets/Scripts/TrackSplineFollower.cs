@@ -3,24 +3,20 @@ using UnityEngine.Splines;
 
 public class TrainMover : MonoBehaviour
 {
-    public SplineContainer splineContainer; // Drag the track spline here
+    public SplineContainer splineContainer; 
     public float speed = 2f;
 
-    private float t = 0f; // Normalized time along the spline
+    private float t = 0f; 
 
     void Update()
     {
         if (splineContainer == null) return;
 
-        // Move forward on the spline
         t += speed * Time.deltaTime / splineContainer.CalculateLength();
-        t %= 1f; // Loop the train when it reaches the end
+        t %= 1f; 
 
-        // Get the position and rotation
         var curve = splineContainer.Spline;
         Vector3 position = curve.EvaluatePosition(t);
-        //Quaternion rotation = curve.EvaluateRotation(t);
 
-        //transform.SetPositionAndRotation(position, rotation);
     }
 }

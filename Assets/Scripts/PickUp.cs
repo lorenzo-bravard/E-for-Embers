@@ -367,12 +367,12 @@ public class PickUpScript : MonoBehaviour
 {
     [Header("R�f�rences")]
     public GameObject player;
-    public Transform holdPos;               // Doit �tre enfant de la cam�ra ou du player
+    public Transform holdPos;             
 
     [Header("Param�tres Pickup / Throw")]
-    public float pickUpRange = 5f;          // Port�e du pickup
-    public float throwForce = 500f;       // Force de lancement
-    public LayerMask pickUpLayerMask;       // Coche le(s) layer(s) de tes objets ramassables ("PickUp", �ventuellement "Default")
+    public float pickUpRange = 5f;         
+    public float throwForce = 500f;       
+    public LayerMask pickUpLayerMask;       
 
     [Header("Rotation de l'objet")]
     [SerializeField]
@@ -398,7 +398,6 @@ public class PickUpScript : MonoBehaviour
 
     void Update()
     {
-        // PICKUP / DROP
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (heldObj == null)
@@ -410,7 +409,7 @@ public class PickUpScript : MonoBehaviour
             }
         }
 
-        // MAINTIEN + ROTATION + THROW
+
         if (heldObj != null)
         {
             MoveObject();
@@ -438,32 +437,26 @@ public class PickUpScript : MonoBehaviour
 
     private void PickUpObject(GameObject pickUpObj)
     {
-        // Sauvegarde et d�tache du parent d'origine
         originalParent = pickUpObj.transform.parent;
         pickUpObj.transform.SetParent(null);
 
-        // Sauvegarde du layer d'origine
         originalLayer = pickUpObj.layer;
 
-        // Force tous les MeshCollider en convex
         foreach (var mc in pickUpObj.GetComponentsInChildren<MeshCollider>())
             mc.convex = true;
 
-        // R�cup�re le Rigidbody
         heldObjRb = pickUpObj.GetComponent<Rigidbody>();
         if (heldObjRb == null) return;
 
         heldObj = pickUpObj;
 
-        // Passe en kinematic (d�sactive la physique)
         heldObjRb.isKinematic = true;
 
-        // Attache � holdPos et recentre
+
         heldObj.transform.SetParent(holdPos);
         heldObj.transform.localPosition = Vector3.zero;
         heldObj.transform.localRotation = Quaternion.identity;
 
-        // D�finit le layer pour ignorer collision avec le joueur
         heldObj.layer = holdLayer;
         Physics.IgnoreCollision(
             heldObj.GetComponent<Collider>(),
@@ -474,18 +467,15 @@ public class PickUpScript : MonoBehaviour
 
     private void DropObject()
     {
-        // R�active collision joueur / objet
         Physics.IgnoreCollision(
             heldObj.GetComponent<Collider>(),
             player.GetComponent<Collider>(),
             false
         );
 
-        // R�tablit le layer et la physique
         heldObj.layer = originalLayer;
         heldObjRb.isKinematic = true;
 
-        // Ajuste la position pour que tout le collider reste au-dessus du sol
         Collider col = heldObj.GetComponent<Collider>();
         if (col != null)
         {
@@ -495,10 +485,8 @@ public class PickUpScript : MonoBehaviour
             // heldObj.transform.position = pos;
         }
 
-        // Rattache au parent d'origine (train)
         heldObj.transform.SetParent(originalParent);
 
-        // R�initialise l'�tat
         heldObj = null;
         heldObjRb = null;
         originalParent = null;
@@ -527,22 +515,18 @@ public class PickUpScript : MonoBehaviour
 
     private void ThrowObject()
     {
-        // R�active collision joueur / objet
         Physics.IgnoreCollision(
             heldObj.GetComponent<Collider>(),
             player.GetComponent<Collider>(),
             false
         );
 
-        // R�tablit layer et physique
         heldObj.layer = originalLayer;
         heldObjRb.isKinematic = false;
 
-        // D�tache et lance
         heldObj.transform.SetParent(null);
         heldObjRb.AddForce(transform.forward * throwForce);
 
-        // R�initialise l'�tat
         heldObj = null;
         heldObjRb = null;
         originalParent = null;

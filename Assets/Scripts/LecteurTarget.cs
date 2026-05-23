@@ -23,7 +23,6 @@ public class LecteurTarget : MonoBehaviour
     {
         if (other.CompareTag("Tape"))
         {
-            // VR Check: Only trigger if the object is released
             var grabbable = other.GetComponent<OVRGrabbable>();
             if (grabbable != null && grabbable.isGrabbed)
             {

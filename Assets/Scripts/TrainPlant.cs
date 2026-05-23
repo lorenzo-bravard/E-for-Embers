@@ -19,8 +19,8 @@ public class TrainPlant : MonoBehaviour
     public float floorHeight = 0.49f;
 
     [Header("Train Boundaries (Local Space)")]
-    public Vector2 clampX = new Vector2(-1.5f, 1.5f);  // Left/Right limit
-    public Vector2 clampZ = new Vector2(-4f, 4f);      // Front/Back limit
+    public Vector2 clampX = new Vector2(-1.5f, 1.5f);  
+    public Vector2 clampZ = new Vector2(-4f, 4f);     
 
 
     private bool isHeld = false;
@@ -46,7 +46,6 @@ public class TrainPlant : MonoBehaviour
         trainRoot = transform.parent;
         grabbable = GetComponent<OVRGrabbable>();
 
-        // Set initial position and rotation in local train space
         transform.localPosition = initialLocalPosition;
         transform.localRotation = Quaternion.Euler(initialLocalRotation);
 
@@ -62,21 +61,18 @@ public class TrainPlant : MonoBehaviour
 
     private void LateUpdate()
     {
-        // VR Release Detection
         if (grabbable != null)
         {
             if (grabbable.isGrabbed)
             {
                 wasGrabbed = true;
-                isHeld = true; // Sync for consistency
+                isHeld = true; 
             }
             else if (wasGrabbed)
             {
                 wasGrabbed = false;
                 isHeld = false;
                 Debug.Log("[TrainPlant] VR Release detected. Triggering cleanup.");
-                // For VR, we assume releasing it means it's "placed" if we want it to work like before
-                // Alternatively, we could check if it's near the ground, but let's keep it simple as requested
                 PlaceOnGround(null); 
             }
         }
@@ -86,18 +82,15 @@ public class TrainPlant : MonoBehaviour
         Transform cam = Camera.main.transform;
         float distanceToPlant = Vector3.Distance(player.position, transform.position);
 
-        // Pick up (Desktop)
         if (!isHeld && !isPlaced && distanceToPlant <= interactionDistance && Input.GetKeyDown(interactKey))
         {
             PickUp(cam);
         }
-        // Place (Desktop)
         else if (isHeld && !wasGrabbed && Input.GetKeyDown(interactKey))
         {
             PlaceOnGround(cam);
         }
 
-        // Keep it in front of camera (Desktop only)
         if (isHeld && !wasGrabbed)
         {
             Vector3 hoverPosition = cam.position + cam.forward * hoverOffset.z + cam.up * hoverOffset.y + cam.right * hoverOffset.x;
@@ -119,9 +112,9 @@ public class TrainPlant : MonoBehaviour
     {
         isHeld = false;
         isPlaced = true;
-        rb.isKinematic = true; // Keep kinematic as requested earlier
+        rb.isKinematic = true; 
 
-        if (cam != null) // Desktop specific placement
+        if (cam != null) 
         {
             Vector3 forwardTargetWorld = cam.position + cam.forward * placeDistance;
             Vector3 localTarget = trainRoot.InverseTransformPoint(forwardTargetWorld);
@@ -134,9 +127,8 @@ public class TrainPlant : MonoBehaviour
             transform.rotation = Quaternion.Euler(initialLocalRotation);
             transform.SetParent(trainRoot);
         }
-        else // VR specific or generic release
+        else 
         {
-            // Just ensure it's parented back to train if it wasn't
             if (transform.parent != trainRoot) transform.SetParent(trainRoot);
         }
 
@@ -182,7 +174,6 @@ public class TrainPlant : MonoBehaviour
             }
         }
 
-        // Fallback: Stop all PS with 'fire', 'flame', or 'burn' in their name in the scene
         foreach (var ps in Object.FindObjectsByType<ParticleSystem>(FindObjectsInactive.Include))
         {
             string psName = ps.name.ToLower();

@@ -12,8 +12,8 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Movement Settings")]
     public float moveSpeed = 3f;
     public float minXOffset = 0.1f;
-    public float maxXOffset = 5f; // Front/back bounds
-    public float maxZOffset = 0.25f; // Left/right bounds
+    public float maxXOffset = 5f; 
+    public float maxZOffset = 0.25f; 
     private float distanceTravelled = 0f;
     private float splineLength;
     private Vector3 currentLocalOffset;
@@ -47,15 +47,12 @@ public class PlayerManager : MonoBehaviour
     {
         Transform cameraTransform = Camera.main.transform;
 
-        // Get input axes
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Build direction relative to camera
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
 
-        // Flatten vectors (remove vertical tilt)
         forward.y = 0f;
         right.y = 0f;
         forward.Normalize();
@@ -67,11 +64,9 @@ public class PlayerManager : MonoBehaviour
         {
             Vector3 movement = moveDir * moveSpeed * Time.deltaTime;
 
-            // Apply movement in local space relative to train
             Vector3 localMovement = transform.parent.InverseTransformDirection(movement);
             currentLocalOffset += localMovement;
 
-            // Clamp offsets to bounds inside train
                 currentLocalOffset.x = Mathf.Clamp(currentLocalOffset.x, minXOffset, maxXOffset);
             currentLocalOffset.z = Mathf.Clamp(currentLocalOffset.z, -maxZOffset, maxZOffset);
 

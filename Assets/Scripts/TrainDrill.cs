@@ -22,7 +22,7 @@ public class TrainDrill : MonoBehaviour
     private Transform trainRoot;
     private Quaternion initialRotation;
 
-    public GameObject playerObject; // 👈 For triggering music
+    public GameObject playerObject; 
 
     public ColorManager colorManager;
 
@@ -55,7 +55,6 @@ public class TrainDrill : MonoBehaviour
         }
         else if (isHeld && distanceToCockpit <= interactionDistance && Input.GetKeyDown(interactKey))
         {
-            //StartCoroutine(PlaceDrillInCockpit());
         }
 
         if (isHeld && !isPlaced)
@@ -86,7 +85,6 @@ public class TrainDrill : MonoBehaviour
         transform.rotation = trainRoot.rotation * initialRotation;
         rb.isKinematic = true;
 
-        // 🎵 Optional: Play music
         if (playerObject != null)
         {
             if (GameAudioManager.Instance != null)
