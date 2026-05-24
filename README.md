@@ -2,6 +2,8 @@
 
 **E for Embers** est une expérience narrative et sensorielle en Réalité Virtuelle (VR) conçue sous Unity. Le jeu explore les thématiques de la dépression et du cheminement vers la guérison à travers une métaphore interactive : un conducteur de train prisonnier d'une boucle temporelle dans un wagon en ruine, qui doit reconstruire son environnement pour faire revenir les couleurs et la lumière.
 
+**[Consulter la page dédiée à E for Embers (Extended Reality) sur Notion](https://www.notion.so/E-for-Embers-Projet-Multidisciplinaire-E4FI-S4-Extended-Reality-36ae43b9d256805d830ce6b1d588ae44?source=copy_link)** 
+
 ---
 
 ##  Cahier des Charges
